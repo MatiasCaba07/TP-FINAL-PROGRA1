@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "TPFINAL-GRUPO-6/entorno.jar"
+    ]
+}
