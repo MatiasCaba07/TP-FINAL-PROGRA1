@@ -14,6 +14,11 @@ public class Personaje {
     private double velocidadY;
     private boolean enSuelo;
 
+    public Proyectil getDisparo() {
+        return disparo;
+    }
+    public Proyectil disparo;
+
 
     public Personaje(int x, int y, int ancho, int alto) {
         this.x = x;
@@ -80,6 +85,17 @@ public class Personaje {
         }
     }
 
+
+        //DISPARO
+    public void disparar(Entorno e) {
+        double mouseX = e.mouseX();
+        double mouseY = e.mouseY();
+
+        double dx = mouseX - this.x;
+        double dy = mouseY - this.y;
+
+        disparo = new Proyectil(this.x, this.y, dx, dy);
+}
 
 
 

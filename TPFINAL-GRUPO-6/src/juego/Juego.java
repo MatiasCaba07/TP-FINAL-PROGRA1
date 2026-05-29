@@ -1,7 +1,6 @@
 package juego;
 
 
-import java.awt.Color;
 
 import entorno.Entorno;
 import entorno.InterfaceJuego;
@@ -22,7 +21,9 @@ public class Juego extends InterfaceJuego
 		
 		// Inicializar lo que haga falta para el juego
 		// ...
+
 		p = new Personaje(entorno.ancho()/2, entorno.alto()/2, 20, 50);
+
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -38,7 +39,22 @@ public class Juego extends InterfaceJuego
 	{
 		// Procesamiento de un instante de tie
 		p.princesa(entorno);
-		
+
+	if (entorno.sePresionoBoton(entorno.BOTON_IZQUIERDO) && p.getDisparo() == null) {
+    	p.disparar(entorno);
+	}
+	if (p.getDisparo() != null) {
+    	p.getDisparo().actualizar(entorno);
+
+    	if (p.getDisparo().fueraDePantalla(entorno)) {
+    		p.disparo = null;
+    	}
+	}
+
+
+
+
+	
 	}
 	
 
