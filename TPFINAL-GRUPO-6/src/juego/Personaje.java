@@ -11,6 +11,9 @@ public class Personaje {
     private int ancho;
     private int alto;
 
+    private double velocidadY;
+    private boolean enSuelo;
+
 
     public Personaje(int x, int y, int ancho, int alto) {
         this.x = x;
@@ -24,8 +27,9 @@ public class Personaje {
     public void princesa(Entorno e){
         movIzq(e);
         movDer(e);
-        movArr(e);
-        movAba(e);
+        saltar(e);
+        aplicarGravedad();
+        controlarPiso(e);
         dibujar(e);
     } 
 
@@ -47,15 +51,32 @@ public class Personaje {
         }
     }
 
-    public void movArr(Entorno e){
-        if(e.estaPresionada('w') && getY() - getAlto() / 2 > 0){
-            this.y = this.y-3;
+        //SALTO
+
+    public void saltar(Entorno e){
+        if(e.sePresiono('w')) {
+            if(enSuelo){
+             velocidadY = -13;
+              enSuelo = false;
+            }
         }
     }
 
-    public void movAba(Entorno e){
-        if(e.estaPresionada('s') && getY() + getAlto() / 2 < e.alto()){
-            this.y = this.y+3;
+
+        //GRAVEDAD
+    public void aplicarGravedad(){
+        velocidadY += 0.5;
+        y += velocidadY;
+    }
+
+
+        // COLISION CON EL PISO (se va a  cambiar)
+    public void controlarPiso(Entorno e){
+        if(y + alto/2 >= e.alto()){
+            y = e.alto() - alto/2;
+            velocidadY = 0;
+            enSuelo = true;
+            
         }
     }
 
