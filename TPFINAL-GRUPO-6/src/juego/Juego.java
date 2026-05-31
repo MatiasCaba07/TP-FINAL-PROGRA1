@@ -10,6 +10,7 @@ public class Juego extends InterfaceJuego
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Personaje p;
+	private Enemigo[] enemigos;
 	
 	// Variables y métodos propios de cada grupo
 	// ...
@@ -19,11 +20,20 @@ public class Juego extends InterfaceJuego
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Proyecto para TP", 800, 600);
 		
+		
 		// Inicializar lo que haga falta para el juego
 		// ...
 
 		p = new Personaje(entorno.ancho()/2, entorno.alto()/2, 20, 50);
-
+		this.enemigos = new Enemigo[5];
+		
+		for(int i = 0; i< enemigos.length; i++) {
+			int xAleatoria = 50 + (int)(Math.random() *700);  //generamos aleatoriamente la x entre 50 y 750 para que no salgan pegados al borde
+			
+			int yAleatoria = 100 +(int)(Math.random()* 200); // lo mismo pero con y
+			
+			enemigos[i] = new Enemigo(xAleatoria, yAleatoria, 30,30);
+		}
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -39,6 +49,7 @@ public class Juego extends InterfaceJuego
 	{
 		// Procesamiento de un instante de tie
 		p.princesa(entorno);
+		
 
 	if (entorno.sePresionoBoton(entorno.BOTON_IZQUIERDO) && p.getDisparo() == null) {
     	p.disparar(entorno);
@@ -51,7 +62,19 @@ public class Juego extends InterfaceJuego
     	}
 	}
 
-
+	// enemigos
+	for(int i=0; i<enemigos.length;i++) {
+		if(enemigos[i] !=null) {
+			enemigos[i].enemigo(entorno);
+			
+			if(p.getDisparo() !=null) {
+				if(Colisionador.verificarColision(p.getDisparo(), enemigos[i])) {
+					enemigos[i] = null;
+					p.disparo =null;
+				}
+			}
+		}
+	}
 
 
 	

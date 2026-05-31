@@ -42,4 +42,7 @@ public class Proyectil {
     private void dibujar(Entorno e) {
         e.dibujarCirculo(this.x, this.y, radio, Color.RED);
     }
+    public double getX() { return this.x; }
+    public double getY() { return this.y; }
+    public int getRadio() { return this.radio; }
 }

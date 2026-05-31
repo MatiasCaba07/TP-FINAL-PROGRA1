@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="TPFINAL-GRUPO-6/src"/>
+	<classpathentry kind="lib" path="TPFINAL-GRUPO-6/entorno.jar"/>
+	<classpathentry kind="output" path="TPFINAL-GRUPO-6/bin"/>
+</classpath>
